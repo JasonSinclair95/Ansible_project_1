@@ -1,0 +1,20 @@
+---
+- name: Download gradel 5.4.1
+  hosts: servers
+  become: yes
+  
+  tasks:
+   - name: Create a Directory /opt/gradle
+     become: yes
+     file:
+       path: /opt/gradel
+       state: directory
+       mode: 0755
+    
+   - name: Download gradle using get_url
+     become: yes
+     get_url:
+       url: https://services.gradle.org/distributions/gradle-5.4.zip
+       dest: /opt/gradle
+       mode: 0755
+       
